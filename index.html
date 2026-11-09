@@ -43,7 +43,6 @@
             transform: scale(1.08);
             font-weight: 900;
         }
-        /* Mobile-friendly responsive board scaling */
         .board-wrapper {
             width: 100%;
             max-width: min(94vw, 440px);
@@ -55,7 +54,6 @@
                 max-width: 480px;
             }
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -77,7 +75,6 @@
 
     <!-- Top Multilingual Selector & School Header -->
     <header class="w-full max-w-4xl flex flex-col gap-2.5 border-b border-slate-800 pb-3 mb-3">
-        <!-- Multilingual Bar -->
         <div class="w-full flex items-center justify-between bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-1.5 shadow-sm">
             <div class="flex items-center gap-1.5 text-xs text-slate-300 font-semibold">
                 <span class="text-base">🌐</span>
@@ -99,7 +96,6 @@
             </div>
         </div>
 
-        <!-- Title Banner & Student Profile Badge -->
         <div class="flex flex-col sm:flex-row items-center justify-between gap-2">
             <div class="flex items-center gap-2.5 text-center sm:text-left">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20 text-xl font-black shrink-0">
@@ -134,7 +130,6 @@
     <!-- 1. Results & Status Dashboard -->
     <section class="w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl p-3 sm:p-4 shadow-xl mb-3">
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 items-center mb-3">
-            <!-- Stage Info -->
             <div class="bg-slate-950/80 p-2 sm:p-2.5 rounded-xl border border-slate-800/80">
                 <span data-i18n="stageLabel" class="text-[11px] text-slate-400 block font-semibold mb-0.5">현재 스테이지</span>
                 <div class="flex flex-col truncate">
@@ -146,13 +141,11 @@
                 </div>
             </div>
 
-            <!-- Timer -->
             <div class="bg-slate-950/80 p-2 sm:p-2.5 rounded-xl border border-slate-800/80">
                 <span data-i18n="timerLabel" class="text-[11px] text-slate-400 block font-semibold mb-0.5">소요 시간</span>
                 <span id="timerDisplay" class="text-base sm:text-lg font-black font-mono text-sky-400">00:00</span>
             </div>
 
-            <!-- Verification Status -->
             <div class="bg-slate-950/80 p-2 sm:p-2.5 rounded-xl border border-slate-800/80">
                 <span data-i18n="statusLabel" class="text-[11px] text-slate-400 block font-semibold mb-0.5">판정 상태</span>
                 <span id="statusBadge" class="inline-flex items-center gap-1 text-xs font-bold text-amber-400 truncate">
@@ -160,7 +153,6 @@
                 </span>
             </div>
 
-            <!-- 2-Tier Stage Clear Progress Table -->
             <div class="bg-slate-950/80 p-2 sm:p-2.5 rounded-xl border border-slate-800/80">
                 <div class="flex items-center justify-between mb-1">
                     <span data-i18n="progressTableTitle" class="text-[11px] text-slate-400 block font-semibold">스테이지 완료 현황</span>
@@ -187,7 +179,6 @@
             </div>
         </div>
 
-        <!-- Action Controls -->
         <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80">
             <div class="flex items-center gap-2 flex-wrap">
                 <button id="checkSolutionBtn" class="px-3.5 py-1.5 sm:px-4 sm:py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm rounded-lg shadow-lg shadow-emerald-600/30 active:scale-95 transition flex items-center gap-1.5">
@@ -268,9 +259,8 @@
         <span class="writing-vertical text-[11px] font-extrabold tracking-wider">순위표</span>
     </button>
 
-    <!-- 5. 랭킹 슬라이드 패널 (PC는 상시 오픈, 모바일은 슬라이드인) -->
+    <!-- 5. 랭킹 슬라이드 패널 -->
     <aside id="rankingPanel" class="fixed right-0 top-0 bottom-0 w-72 sm:w-80 bg-slate-900/95 backdrop-blur-md border-l border-slate-800 z-40 transform translate-x-full xl:translate-x-0 transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
-        <!-- 패널 헤더 -->
         <div class="p-3.5 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
             <div class="flex items-center gap-2">
                 <span class="text-xl">🏆</span>
@@ -291,12 +281,10 @@
             </div>
         </div>
 
-        <!-- 순위 목록 -->
         <div class="flex-1 overflow-y-auto p-3 space-y-2" id="rankingList">
             <div class="text-center text-xs text-slate-500 py-8 animate-pulse">순위를 불러오는 중...</div>
         </div>
 
-        <!-- 푸터 -->
         <div class="p-2.5 border-t border-slate-800/80 bg-slate-950/80 text-[10px] text-slate-400 text-center">
             * 상위 10위까지 실시간 기록됩니다.
         </div>
@@ -474,7 +462,7 @@
         </div>
     </div>
 
-    <!-- Application Script with Full Multilingual Dictionary and Realtime GAS Ranking -->
+    <!-- Application Script with JSONP and CORS-Bypass Ranking System -->
     <script>
     (function () {
         // --- 0. Google Apps Script Web App URL ---
@@ -1027,7 +1015,7 @@
         const resetBtn = document.getElementById('resetBtn');
         const guideClueBtn = document.getElementById('guideClueBtn');
 
-        // --- Ranking Panel Logic ---
+        // --- JSONP Ranking Fetch & CORS-Proof Submission ---
         rankingToggleBtn.addEventListener('click', () => {
             rankingPanel.classList.remove('translate-x-full');
         });
@@ -1038,62 +1026,80 @@
             fetchRankings(currentDiff, currentStageIdx + 1);
         });
 
-        async function fetchRankings(diff, stage) {
+        // 전역 콜백 등록
+        window.handleRankingResponse = function(data) {
+            if (data && data.status === "success" && data.rankings && data.rankings.length > 0) {
+                rankingList.innerHTML = data.rankings.map(item => {
+                    const badgeColor = item.rank === 1 ? 'bg-amber-400 text-slate-950 ring-2 ring-amber-300' :
+                                       item.rank === 2 ? 'bg-slate-300 text-slate-950' :
+                                       item.rank === 3 ? 'bg-amber-700 text-white' : 'bg-slate-800 text-slate-400';
+                    return `
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-slate-950/70 border border-slate-800 text-xs shadow-sm hover:border-slate-700 transition">
+                            <div class="flex items-center gap-2">
+                                <span class="w-5 h-5 flex items-center justify-center rounded-md font-black text-[10px] ${badgeColor}">
+                                    ${item.rank}
+                                </span>
+                                <div class="flex flex-col">
+                                    <span class="font-bold text-slate-200">${item.name}</span>
+                                    <span class="text-[9px] text-slate-500 font-mono">${item.studentId}</span>
+                                </div>
+                            </div>
+                            <span class="font-mono font-black text-sky-400 text-[11px]">${item.timeDisplay}</span>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                rankingList.innerHTML = `<div class="text-center text-xs text-slate-500 py-8 leading-relaxed">아직 등록된 기록이 없습니다.<br><span class="text-amber-400 font-bold">1위</span>의 주인공이 되어보세요!</div>`;
+            }
+        };
+
+        function fetchRankings(diff, stage) {
             rankStageTitle.innerText = `${diff} #${stage}`;
             rankingList.innerHTML = `<div class="text-center text-xs text-slate-500 py-8 animate-pulse">순위를 불러오는 중...</div>`;
 
-            try {
-                const res = await fetch(`${GAS_URL}?diff=${diff}&stage=${stage}`);
-                const data = await res.json();
+            // 기존 script 태그 정리
+            const oldScript = document.getElementById('jsonpRankingScript');
+            if (oldScript) oldScript.remove();
 
-                if (data.status === "success" && data.rankings && data.rankings.length > 0) {
-                    rankingList.innerHTML = data.rankings.map(item => {
-                        const badgeColor = item.rank === 1 ? 'bg-amber-400 text-slate-950 ring-2 ring-amber-300' :
-                                           item.rank === 2 ? 'bg-slate-300 text-slate-950' :
-                                           item.rank === 3 ? 'bg-amber-700 text-white' : 'bg-slate-800 text-slate-400';
-                        return `
-                            <div class="flex items-center justify-between p-2 rounded-xl bg-slate-950/70 border border-slate-800 text-xs shadow-sm hover:border-slate-700 transition">
-                                <div class="flex items-center gap-2">
-                                    <span class="w-5 h-5 flex items-center justify-center rounded-md font-black text-[10px] ${badgeColor}">
-                                        ${item.rank}
-                                    </span>
-                                    <div class="flex flex-col">
-                                        <span class="font-bold text-slate-200">${item.name}</span>
-                                        <span class="text-[9px] text-slate-500 font-mono">${item.studentId}</span>
-                                    </div>
-                                </div>
-                                <span class="font-mono font-black text-sky-400 text-[11px]">${item.timeDisplay}</span>
-                            </div>
-                        `;
-                    }).join('');
-                } else {
-                    rankingList.innerHTML = `<div class="text-center text-xs text-slate-500 py-8 leading-relaxed">아직 등록된 기록이 없습니다.<br><span class="text-amber-400 font-bold">1위</span>의 주인공이 되어보세요!</div>`;
-                }
-            } catch (err) {
-                console.error("Ranking fetch error:", err);
-                rankingList.innerHTML = `<div class="text-center text-xs text-rose-400 py-8">순위표 로딩 실패<br><span class="text-[10px] text-slate-500">네트워크를 확인해주세요</span></div>`;
-            }
+            // JSONP 스크립트 인젝션 (CORS 방지)
+            const script = document.createElement('script');
+            script.id = 'jsonpRankingScript';
+            script.src = `${GAS_URL}?diff=${diff}&stage=${stage}&callback=handleRankingResponse&_=${Date.now()}`;
+            script.onerror = function() {
+                rankingList.innerHTML = `<div class="text-center text-xs text-rose-400 py-8">순위표 로딩 실패<br><span class="text-[10px] text-slate-500">배포 상태를 확인해주세요</span></div>`;
+            };
+            document.body.appendChild(script);
         }
 
         async function submitClearScore(diff, stage, seconds, timeDisplay) {
+            const sid = studentInfo.id || '비공개';
+            const sname = studentInfo.name || '익명';
+            
+            // 텍스트/플레인 직렬화로 GAS CORS 302 우회 및 payload 보존
+            const payload = JSON.stringify({
+                studentId: sid,
+                studentName: sname,
+                diff: diff,
+                stage: stage,
+                seconds: seconds,
+                timeDisplay: timeDisplay
+            });
+
             try {
                 await fetch(GAS_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        studentId: studentInfo.id || '비공개',
-                        studentName: studentInfo.name || '익명',
-                        diff: diff,
-                        stage: stage,
-                        seconds: seconds,
-                        timeDisplay: timeDisplay
-                    })
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: payload
                 });
-                setTimeout(() => fetchRankings(diff, stage), 1200);
             } catch (err) {
-                console.error("Score submit error:", err);
+                console.error("Score submit error (fetch):", err);
             }
+
+            // 시트 기록 반영을 위해 1.5초 후 순위표 새로고침
+            setTimeout(() => {
+                fetchRankings(diff, stage);
+            }, 1500);
         }
 
         // --- Student Profile Logic ---
@@ -1203,7 +1209,7 @@
         function loadStage(diff, stageIdx) {
             currentDiff = diff;
             currentStageIdx = stageIdx;
-            const puzzle = PUZZLE_DATA[diff][stageIdx];
+            const puzzle = PUZZLE_DATA[currentDiff][stageIdx];
             const N = puzzle.size;
 
             isCompleted = false;
@@ -1213,7 +1219,6 @@
             clueInspectContent.innerHTML = t('sightInspectorDefault');
             selectedCellInfo.innerHTML = t('noCellSelected');
 
-            // Initialize Grid
             currentGrid = [];
             for (let r = 0; r < N; r++) {
                 currentGrid[r] = [];
@@ -1227,7 +1232,6 @@
                 }
             }
 
-            // Update UI Badges
             currentDiffBadge.innerText = diff;
             const diffColors = {
                 BEGINNER: 'text-emerald-400',
@@ -1261,7 +1265,7 @@
             updateStudentDisplay();
             updateProgressDots();
             
-            // 랭킹 패널 데이터 로딩
+            // 랭킹 패널 데이터 로딩 (JSONP)
             fetchRankings(diff, stageIdx + 1);
 
             if (selectedCell) {
